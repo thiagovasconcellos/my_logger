@@ -3,7 +3,7 @@ import * as os from 'os';
 import { writeFile } from 'fs';
 import { format } from 'date-fns';
 
-const path = process.env.PATH_TO_LOG;
+let Path: string;
 
 interface TCVLog {
   log_type: string;
@@ -54,6 +54,10 @@ class Logger extends TCVLog {
     this.object = object;
   }
 
+  static setPath(path: string) {
+    Path = path;
+  }
+
   /**
    * Allow you to generate info-logs. Info logs behave slight different than error-logs.
    * The main difference is
@@ -66,7 +70,7 @@ class Logger extends TCVLog {
     intel.log_type = 'INFO';
     intel.data = [object];
     writeFile(
-      `${path}/${format(new Date(), 'yyyyMMddHHmmss')}-${intel.hostname}-INFO-ONLY.json`,
+      `${Path}/${format(new Date(), 'yyyyMMddHHmmss')}-${intel.hostname}-INFO-ONLY.json`,
       JSON.stringify(intel, null, '\t'),
       err => {
         if (err) throw err;
@@ -88,7 +92,7 @@ class Logger extends TCVLog {
     intel.log_type = 'ERROR';
     intel.data = [object];
     writeFile(
-      `${path}/${format(new Date(), 'yyyyMMddHHmmss')}-${intel.hostname}-ERROR.json`,
+      `${Path}/${format(new Date(), 'yyyyMMddHHmmss')}-${intel.hostname}-ERROR.json`,
       JSON.stringify(intel, null, '\t'),
       err => {
         if (err) throw err;

@@ -1,6 +1,6 @@
 {
   "name": "tcv_logger",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/index.js",
   "description": "Little package that generates log in .json file. Also generates lots of additional information about system environments",
   "author": "Thiago Vasconcellos",
@@ -20,7 +20,6 @@
     "@types/pino": "^5.15.5",
     "@typescript-eslint/eslint-plugin": "^2.22.0",
     "@typescript-eslint/parser": "^2.22.0",
-    "dotenv": "^8.2.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-prettier": "^3.1.2",
@@ -31,6 +30,6 @@
   "dependencies": {
     "@types/node": "^13.9.0",
     "date-fns": "^2.10.0",
-    "pino": "^5.17.0"
+    "dotenv": "^8.2.0"
   }
 }
