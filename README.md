@@ -75,4 +75,10 @@ Note that each method expects an object as a parameter. The output should look l
 }
 ```
 
-By default, CPUs and NetworkInterfaces are set to false on .env file.
+By default, CPUs and NetworkInterfaces logs are set to false.
+To change that, simple do:
+
+```js
+Logger.setCpuLogs(true);
+Logger.setNetworkInterfacesLogs(true);
+```

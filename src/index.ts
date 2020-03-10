@@ -4,6 +4,8 @@ import { writeFile } from 'fs';
 import { format } from 'date-fns';
 
 let Path: string;
+let GenerateCpusInfo = false;
+let GenerateNetworkInterface = false;
 
 interface TCVLog {
   log_type: string;
@@ -23,8 +25,8 @@ class TCVLog {
     this.platform = `${os.platform()} - ${os.type()}`;
     this.hostname = os.hostname();
     this.home_dir = os.homedir();
-    this.cpus = process.env.GENERATE_CPUS === 'true' ? os.cpus() : 'false';
-    (this.network_interfaces = process.env.GENERATE_INTERFACES === 'true' ? os.networkInterfaces() : 'false'),
+    this.cpus = GenerateCpusInfo ? os.cpus() : 'false';
+    (this.network_interfaces = GenerateNetworkInterface ? os.networkInterfaces() : 'false'),
       (this.timestamp = format(new Date(), 'yyyy-MM-dd HH:mm:ss'));
   }
 
@@ -58,6 +60,13 @@ class Logger extends TCVLog {
     Path = path;
   }
 
+  static setCpuLogs(bool: boolean) {
+    GenerateCpusInfo = bool;
+  }
+
+  static setNetworkInterfacesLogs(bool: boolean) {
+    GenerateNetworkInterface = bool;
+  }
   /**
    * Allow you to generate info-logs. Info logs behave slight different than error-logs.
    * The main difference is
