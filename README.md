@@ -8,7 +8,7 @@ yarn add tcv_logger
 ```
 
 ```js
-import Logger from 'tcv_logger';
+import { default as Logger } from 'tcv_logger';
 import Path from 'path';
 
 const path = Path.resolve(__dirname, 'logs');
